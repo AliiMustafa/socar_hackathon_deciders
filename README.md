@@ -337,7 +337,13 @@ Access:
 
 * Airflow UI: http://<VM_IP>:8080
 * Metabase: http://<VM_IP>:3000
+Airflow:
+admin - user
+admin - pass
 
+Metabase:
+email - aliimustafazada@gmail.com
+pass - Deciders2025!!
 ---
 
 ## 🏁 Outcome

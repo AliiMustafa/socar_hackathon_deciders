@@ -1,0 +1,21 @@
+[2025-12-14T05:40:02.004+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-12-14T05:40:02.014+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: raw_vault_incremental_ingest.t_diff scheduled__2025-12-14T05:35:00+00:00 [queued]>
+[2025-12-14T05:40:02.018+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: raw_vault_incremental_ingest.t_diff scheduled__2025-12-14T05:35:00+00:00 [queued]>
+[2025-12-14T05:40:02.019+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2025-12-14T05:40:02.026+0000] {taskinstance.py:2889} INFO - Executing <Task(_PythonDecoratedOperator): t_diff> on 2025-12-14 05:35:00+00:00
+[2025-12-14T05:40:02.034+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=3200) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-12-14T05:40:02.033+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'raw_vault_incremental_ingest', 't_diff', 'scheduled__2025-12-14T05:35:00+00:00', '--job-id', '180', '--raw', '--subdir', 'DAGS_FOLDER/raw_vault_ingest_dag.py', '--cfg-path', '/tmp/tmp8xfzv27l']
+[2025-12-14T05:40:02.035+0000] {standard_task_runner.py:72} INFO - Started process 3202 to run task
+[2025-12-14T05:40:02.035+0000] {standard_task_runner.py:105} INFO - Job 180: Subtask t_diff
+[2025-12-14T05:40:02.065+0000] {task_command.py:467} INFO - Running <TaskInstance: raw_vault_incremental_ingest.t_diff scheduled__2025-12-14T05:35:00+00:00 [running]> on host 2a9162673db2
+[2025-12-14T05:40:02.125+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='raw_vault_incremental_ingest' AIRFLOW_CTX_TASK_ID='t_diff' AIRFLOW_CTX_EXECUTION_DATE='2025-12-14T05:35:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-12-14T05:35:00+00:00'
+[2025-12-14T05:40:02.126+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-12-14T05:40:02.128+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-12-14T05:40:02.128+0000] {base.py:84} INFO - Retrieving connection 'RAWVAULT_PG'
+[2025-12-14T05:40:02.133+0000] {base.py:84} INFO - Retrieving connection 'RAWVAULT_PG'
+[2025-12-14T05:40:02.137+0000] {python.py:240} INFO - Done. Returned value was: {'to_process': [], 'missing': []}
+[2025-12-14T05:40:02.152+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-12-14T05:40:02.152+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=raw_vault_incremental_ingest, task_id=t_diff, run_id=scheduled__2025-12-14T05:35:00+00:00, execution_date=20251214T053500, start_date=20251214T054002, end_date=20251214T054002
+[2025-12-14T05:40:02.168+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-12-14T05:40:02.182+0000] {taskinstance.py:3895} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2025-12-14T05:40:02.184+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

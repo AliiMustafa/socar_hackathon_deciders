@@ -45,7 +45,7 @@ def main():
 
     for src in parquet_files:
         rel = src.relative_to(data_dir)
-        dst = out_dir / rel
+        dst = out_dir / rel.parent
 
         if is_readable_parquet(src):
             dst.parent.mkdir(parents=True, exist_ok=True)

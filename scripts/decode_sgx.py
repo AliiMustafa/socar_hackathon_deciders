@@ -69,7 +69,9 @@ def main():
         try:
             table = decode_one(src)
             # Keep filenames safe (avoid nested folders issues)
-            dst = out_dir / (rel.as_posix().replace("/", "__") + ".parquet")
+            safe_base = rel.as_posix().replace("/", "_")
+            safe_stem = Path(safe_base).stem
+            dst = out_dir / f"{safe_stem}_decoded.parquet"
             pq.write_table(table, dst)
             print(f"{rel} -> {dst.name}")
         except Exception as e:

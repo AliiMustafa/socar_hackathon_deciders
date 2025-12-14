@@ -59,7 +59,7 @@ def main():
     cur.close()
     conn.close()
 
-    print(f"✅ Loaded {csv_path} into {args.schema}.{args.table}")
+    print(f"Loaded {csv_path} into {args.schema}.{args.table}")
 
 if __name__ == "__main__":
     main()

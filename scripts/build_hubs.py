@@ -43,7 +43,7 @@ def main():
         hub = build_hub(src, bk)
         out_path = OUT_DIR / out_name
         hub.to_csv(out_path, index=False)
-        print(f"  → rows: {len(hub)}")
+        print(f"rows: {len(hub)}")
 
     print("Hubs created in:", OUT_DIR)
 

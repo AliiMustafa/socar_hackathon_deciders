@@ -5,21 +5,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 import glob
 
-# -------------------------------------------------
 # Project root (important: makes paths robust)
-# -------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
-# -------------------------------------------------
 # INPUT FILES (masters)
-# -------------------------------------------------
 SENSORS_CSV = "/home/hackathon/socar_hackathon_deciders/caspian_hackathon_assets/master_sensors.csv"
 SURVEYS_CSV = "/home/hackathon/socar_hackathon_deciders/caspian_hackathon_assets/master_surveys.csv"
 WELLS_CSV   = "/home/hackathon/socar_hackathon_deciders/caspian_hackathon_assets/master_wells.csv"
 
-# -------------------------------------------------
 # Parquet sources (BOTH SGX + recovered)
-# -------------------------------------------------
 SGX_DIR = PROJECT_ROOT / "processed_data/sgx_parquet"
 RECOVERED_DIR = PROJECT_ROOT / "processed_data/parquet_recovered"
 
@@ -33,15 +27,11 @@ if not PARQUET_FILES:
 
 print("Parquet files found:", [p.name for p in PARQUET_FILES])
 
-# -------------------------------------------------
 # OUTPUT
-# -------------------------------------------------
 LINK_DIR = PROJECT_ROOT / "processed_data/raw_vault/links"
 LINK_DIR.mkdir(parents=True, exist_ok=True)
 
-# -------------------------------------------------
 # LOAD MASTER HUB KEYS
-# -------------------------------------------------
 df_sensors = pd.read_csv(SENSORS_CSV)
 df_surveys = pd.read_csv(SURVEYS_CSV)
 df_wells   = pd.read_csv(WELLS_CSV)
@@ -54,9 +44,7 @@ valid_sensors = set(df_sensors[SENSOR_BK].astype("string").str.strip().dropna())
 valid_surveys = set(df_surveys[SURVEY_BK].astype("string").str.strip().dropna())
 valid_wells   = set(df_wells[WELL_BK].astype("string").str.strip().dropna())
 
-# -------------------------------------------------
 # HELPERS
-# -------------------------------------------------
 def first_existing_col(df, candidates):
     for c in candidates:
         if c in df.columns:
@@ -79,16 +67,12 @@ def build_link_from_parquet(df, left_col, right_col, record_source):
     link["record_source"] = record_source
     return link
 
-# -------------------------------------------------
 # COLUMN CANDIDATES
-# -------------------------------------------------
 SENSOR_COL_CANDIDATES = ["sensor_id", "sensorid", "sensor", "sid"]
 WELL_COL_CANDIDATES   = ["well_id", "wellid", "well", "wid"]
 SURVEY_COL_CANDIDATES = ["survey_type_id", "survey_id", "surveyid", "survey", "survey_type"]
 
-# -------------------------------------------------
 # BUILD LINKS
-# -------------------------------------------------
 all_sensor_well = []
 all_survey_well = []
 all_sensor_survey = []
@@ -119,9 +103,7 @@ for fp in PARQUET_FILES:
         l = l.rename(columns={sensor_col: SENSOR_BK, survey_col: SURVEY_BK})
         all_sensor_survey.append(l)
 
-# -------------------------------------------------
-# SAVE LINKS (EXACTLY 3 FILES)
-# -------------------------------------------------
+# SAVE LINKS
 def save_link(all_parts, out_path):
     if not all_parts:
         print(f"Skipped {out_path.name} (no data)")
